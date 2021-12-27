@@ -1,5 +1,5 @@
 //Author: Jonathan Parlett
-// Program Name: $replaceme$
+// Program Name: $replaceme$.c
 // Created: $date$
 #include <stdio.h>
 #include <unistd.h>
