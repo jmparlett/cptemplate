@@ -1,5 +1,5 @@
 //Author: Jonathan Parlett
-//Program Name: $replaceme$.c
+//Program Name: $replaceme$.cpp
 //Created: $date$
 #include <bits/stdc++.h>
 using namespace std;
