@@ -1,0 +1,37 @@
+"\x1b[7m"
+"\x1b[0m\r\n"
+
+\x1b[7m cptemplate, create program template folders on the fly\x1b[0m
+Usage of cptemplate:
+  
+  cptemplate [options]
+
+  -l string
+        Language template to use, supports Go, Python, C, and C++
+  -n string
+        Name of program. Defaults to "example". This is what $replaceme$
+        will be replaced with in all files.
+  -p string
+        Path to write template. Defaults to current dir "./".
+  -N    Do not include a markdown notes file
+  -d    print debug info
+
+  example: "cptemplate -l c -n example" creates a folder named example
+          with example.c, exampleNotes.md, and a Makefil.
+
+"\x1b[7mUsage of cptemplate:\x1b[0m  " +
+		// "Usage of cptemplate:\n\n" +
+		"cptemplate [options]\n" +
+		"  -l string\n" +
+		"        Language template to use, supports Go, Python, C, and C++\n" +
+		"  -n string\n" +
+		"        Name of program. Defaults to \"example\". This is what $replaceme$\n" +
+		"        will be replaced with in all files.\n" +
+		"  -p string\n" +
+		"        Path to write template. Defaults to current dir \"./\".\n" +
+		"  -N    Do not include a markdown notes file\n" +
+		"  -d    print debug info\n" +
+		"\n" +
+		"  example: \"cptemplate -l c -n example\" creates a folder named example" +
+		"          with example.c, exampleNotes.md, and a Makefil."
+
