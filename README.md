@@ -7,7 +7,8 @@ Tired of handjaming the same 2 or 3 files everytime you need solve a quick probl
 Then this tool may help you out.
 
 It works based off the template files included in the repo. You can modify them however you like, but adding
-additional ones or adding a new language will require modifying the code.
+additional ones or adding a new language will require modifying the code. Its tested on linux, and will probably function
+on Mac OS as well. It will not work for windows however.
 
 ## Usage
 - `-l` Language supports C, C++, Python, and Go. You can also provide "none" to create just a folder with notes.
@@ -21,7 +22,7 @@ additional ones or adding a new language will require modifying the code.
 2. Run `sudo make install` in repo dir
 
 ## Modding the files
-You can modify any of the templates, just keep in mind the rules for replacement below, and be sure to rebuild after your done changing your templates.
+You can modify any of the templates, just keep in mind the rules for replacement below, and be sure to rerun `sudo make install` after your done changing your templates.
 1. The keyword `$replaceme$` will be replaced with the programName arg `-n` in all files created.
 2. The keyword `$date$` will be replaced with the current date in `YYYY-MM-DD` format in all files created.
 
