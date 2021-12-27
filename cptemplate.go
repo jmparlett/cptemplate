@@ -124,7 +124,7 @@ func cleanAndDie(path string) {
 	if file.ModTime().After(programStartTime) {
 		err = os.RemoveAll(path)
 		if err != nil {
-			log.Fatal("Could cleanup")
+			log.Fatal("Could not cleanup")
 		}
 	}
 }
