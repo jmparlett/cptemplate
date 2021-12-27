@@ -8,15 +8,19 @@ import (
 	"log"
 	"os"
 	"strings"
+	"time"
 )
 
 /*********** Constants ***********/
 const ctemplatePath string = "templates/c/"
 const cpptemplatePath string = "templates/cpp/"
 const keyword string = "$replaceme$" //this is the string that will be replaced in each template
+const dateWord string = "$date$"     //this will be replaced with the current date in any template file
 
 /*********** Globals ***********/
 var programName string
+var date string
+var programStartTime time.Time = time.Now()
 
 /****************** Template Files Begin ******************/
 // Notes Template
@@ -37,6 +41,20 @@ var cMakefile string
 //go:embed templates/c/source.c
 var cSource string
 
+// Go files
+//go:embed templates/go/Makefile
+var goMakefile string
+
+//go:embed templates/go/source.go
+var goSource string
+
+// Python files
+//go:embed templates/python/Makefile
+var pyMakefile string
+
+//go:embed templates/python/source.py
+var pySource string
+
 /****************** Template Files End ********************/
 
 func copyTempFile(source string, path string) {
@@ -49,6 +67,7 @@ func copyTempFile(source string, path string) {
 	defer file.Close()
 
 	source = strings.Replace(source, keyword, programName, -1)
+	source = strings.Replace(source, dateWord, date, -1)
 
 	writer := bufio.NewWriter(file)
 	writer.WriteString(source)
@@ -56,7 +75,7 @@ func copyTempFile(source string, path string) {
 }
 
 func printHelp() {
-	usageMsg := `Usage: cptemplate [options]
+	usageMsg := `Usage: cptemplate [programName language [options]]
   -l string, case insensitive, defaults to C++
         Language template to use, supports Go, Python, C, and C++, (for C++ provide "cpp" as the arg)
   -n string
@@ -71,8 +90,33 @@ func printHelp() {
 	fmt.Print(usageMsg)
 }
 
-func main() {
+func permuteArgs(args []string) int {
+	//rearrange the args array so that named arguments come first, this allows us to use positionals and named args
+	//we return the index of start of non flag args
+	args = args[1:] //remember changing the slice changes the underlying array
+	optind := 0
+	for i := range args {
+		if args[i][0] == '-' {
+			tmp := args[i]
+			args[i] = args[optind]
+			args[optind] = tmp
+			optind++
+		}
+	}
+	return optind + 1
+}
 
+func cleanAndDie(path string) {
+	file, err := os.Stat(path)
+	//don't want to delete somthing we didn't create
+	if file.ModTime().After(programStartTime) {
+		err = os.RemoveAll(path)
+		if err != nil {
+			log.Fatal("Could cleanup")
+		}
+	}
+}
+func main() {
 	//parameters
 	var language string
 	var path string
@@ -82,13 +126,36 @@ func main() {
 	//change default usage msg
 	flag.Usage = printHelp
 
+	//permute args reg to rearrange named args
+	namedArgsPos := permuteArgs(os.Args)
+
 	flag.StringVar(&language, "l", "cpp", "language template to use")
 	flag.StringVar(&path, "p", "./", "path to write template")
-	flag.StringVar(&programName, "n", "example", "name of program")
+	flag.StringVar(&programName, "n", "", "name of program")
 	flag.BoolVar(&notes, "N", true, "include notes or dont")
 	flag.BoolVar(&debug, "d", false, "print debug info")
 
 	flag.Parse()
+
+	if flag.NArg() != 0 { //we may have named args
+		if namedArgsPos < len(os.Args) { //first should be prog name
+			programName = os.Args[namedArgsPos]
+			namedArgsPos++
+		}
+		if namedArgsPos < len(os.Args) { //second should be lang
+			language = os.Args[namedArgsPos]
+			namedArgsPos++
+		}
+	}
+
+	if programName == "" { //if no program name provided print usage and exit
+		fmt.Println("Error: A program name is required \"-n <name>\"")
+		flag.Usage()
+		os.Exit(1)
+	}
+
+	//set date time string
+	date = fmt.Sprint(programStartTime.Year(), "-", programStartTime.Month(), "-", programStartTime.Day())
 
 	//fix path if necessary
 	if path[len(path)-1] != '/' {
@@ -116,46 +183,17 @@ func main() {
 	case "c":
 		copyTempFile(cMakefile, (progFolderPath + "Makefile"))
 		copyTempFile(cSource, (progFolderPath + programName + ".c"))
+	case "go":
+		copyTempFile(goMakefile, (progFolderPath + "Makefile"))
+		copyTempFile(goSource, (progFolderPath + programName + ".go"))
+	case "python":
+		copyTempFile(pyMakefile, (progFolderPath + "Makefile"))
+		copyTempFile(pySource, (progFolderPath + programName + ".py"))
+	case "none":
+		fmt.Println("Info: \"none\" creating file with notes only")
+	default:
+		fmt.Println("Info: language not supported, cleaning up and exiting")
+		cleanAndDie(progFolderPath)
+		os.Exit(1)
 	}
 }
-
-// s := "some text $replaceme$ and $replaceme$"
-
-// fmt.Println(s)
-
-// s = strings.Replace(s, "$replaceme$", "replaced", -1)
-
-// fmt.Println(s)
-
-// print(sampleFile)
-// os.Mkdir("./temp", 0755)
-
-// fmt.Print(cppSource)
-// fmt.Print(cppMakefile)
-
-// fmt.Println()
-// fmt.Println()
-
-// cppMakefile = strings.Replace(cppMakefile, "$replaceme$", "example", -1)
-
-// fmt.Print(cppMakefile)
-
-// os.Mkdir("example", 0755)
-// file, err := os.Create("example/example.cpp")
-// if err != nil {
-// log.Fatal(err)
-// }
-// defer file.Close()
-//
-// writer := bufio.NewWriter(file)
-// writer.WriteString(cppSource)
-// writer.Flush()
-//
-// file, err = os.Create("example/Makefile")
-// if err != nil {
-// log.Fatal(err)
-// }
-//
-// writer = bufio.NewWriter(file)
-// writer.WriteString(cppMakefile)
-// writer.Flush()

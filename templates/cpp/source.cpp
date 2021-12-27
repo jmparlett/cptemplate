@@ -1,6 +1,4 @@
 #include <bits/stdc++.h>
-
-		
 using namespace std;
 #define ll long long int
 #define ull unsigned long long int

@@ -1,1 +1,2 @@
 # $replaceme$ Notes
+### Created: $date$
