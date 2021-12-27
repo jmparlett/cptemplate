@@ -29,7 +29,7 @@ You can modify any of the templates, just keep in mind the rules for replacement
 
 
 ## Process Walkthrough
-Given a the command `cptemplate -l c -n example -p .`
+Given a the command `cptemplate -l c -n example`
 ### In current dir
 1. creates a folder called example
 2. creates a source file `example.c`
