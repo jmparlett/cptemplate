@@ -210,7 +210,7 @@ func main() {
 		copyTempFile(pyMakefile, (progFolderPath + "Makefile"))
 		copyTempFile(pySource, (progFolderPath + programName + ".py"))
 	case "none":
-		fmt.Println("Info: \"none\" creating file with notes only")
+		fmt.Println("Info: \"none\" provided, creating folder with notes only")
 	default:
 		fmt.Println("Info: language not supported, cleaning up and exiting")
 		cleanAndDie(progFolderPath)
