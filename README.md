@@ -18,6 +18,7 @@ on Mac OS as well. It will not work for windows however.
 - `-h` Prints usage instructions and exits.
 
 ## Installation
+Only dependency is Go. Reference this for installing Go https://go.dev/doc/install
 1. Clone the repo
 2. Run `sudo make install` in repo dir
 
