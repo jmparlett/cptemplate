@@ -14,6 +14,7 @@ additional ones or adding a new language will require modifying the code.
 - `-N` No notes. Note file is provided by default.
 - `-n` Program name. The name of the program or project, this is used to name the files and the directory.
 - `-p` Path to location to place template folder. Defaults to current dir.
+- `-h` Prints usage instructions and exits.
 
 ## Installation
 1. Clone the repo
