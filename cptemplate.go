@@ -94,15 +94,6 @@ func permuteArgs(args []string) int {
 	//rearrange the args array so that named arguments come first, this allows us to use positionals and named args
 	//we return the index of start of non flag args
 	args = args[1:] //remember changing the slice changes the underlying array
-	// optind := 0
-	// for i := range args {
-	// if args[i][0] == '-' {
-	// tmp := args[i]
-	// args[i] = args[optind]
-	// args[optind] = tmp
-	// optind++
-	// }
-	// }
 	j := 0 //our swap index
 	i := 0 //our args index
 	for i < len(args) {
