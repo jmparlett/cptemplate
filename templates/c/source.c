@@ -1,3 +1,6 @@
+//Author: Jonathan Parlett
+// Program Name: $replaceme$
+// Created: $date$
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>

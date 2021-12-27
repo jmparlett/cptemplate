@@ -1,3 +1,7 @@
+//Author: Jonathan Parlett
+// Program Name: $replaceme$
+// Created: $date$
+
 package main
 
 import "fmt"

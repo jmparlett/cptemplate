@@ -1,4 +1,8 @@
-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#Author: Jonathan Parlett
+#Program Name: $replaceme$
+#Created: $date$
 
 
 if __name__ == "__main__":

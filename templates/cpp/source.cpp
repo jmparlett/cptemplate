@@ -1,3 +1,6 @@
+//Author: Jonathan Parlett
+//Program Name: $replaceme$.c
+//Created: $date$
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long int
