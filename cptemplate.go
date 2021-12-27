@@ -75,7 +75,7 @@ func copyTempFile(source string, path string) {
 }
 
 func printHelp() {
-	usageMsg := `Usage: cptemplate [programName language [options]]
+	usageMsg := `Usage: cptemplate [programName] [language] [options]
   -l string, case insensitive, defaults to C++
         Language template to use, supports Go, Python, C, and C++, (for C++ provide "cpp" as the arg)
   -n string
@@ -94,16 +94,36 @@ func permuteArgs(args []string) int {
 	//rearrange the args array so that named arguments come first, this allows us to use positionals and named args
 	//we return the index of start of non flag args
 	args = args[1:] //remember changing the slice changes the underlying array
-	optind := 0
-	for i := range args {
-		if args[i][0] == '-' {
+	// optind := 0
+	// for i := range args {
+	// if args[i][0] == '-' {
+	// tmp := args[i]
+	// args[i] = args[optind]
+	// args[optind] = tmp
+	// optind++
+	// }
+	// }
+	j := 0 //our swap index
+	i := 0 //our args index
+	for i < len(args) {
+		if args[i][0] == '-' { //if its a dash we want to send it and its neighbor to the back
 			tmp := args[i]
-			args[i] = args[optind]
-			args[optind] = tmp
-			optind++
+			args[i] = args[j]
+			args[j] = tmp
+			j++
+			i++
+
+			//now the neighbor
+			if i < len(args) {
+				tmp := args[i]
+				args[i] = args[j]
+				args[j] = tmp
+				j++
+			}
 		}
+		i++
 	}
-	return optind + 1
+	return j + 1 //pos of named arg
 }
 
 func cleanAndDie(path string) {

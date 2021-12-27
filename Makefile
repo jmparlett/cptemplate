@@ -8,4 +8,5 @@ cptemplate: cptemplate.go $(CDIR) $(GODIR) $(PYDIR) $(CPPDIR) templates/*
 	go build cptemplate.go 
 
 install:
+	make cptemplate
 	mv cptemplate /usr/bin/cptemplate
