@@ -83,7 +83,7 @@ func printHelp() {
   -p string
         Path to write template. Defaults to current dir "./"
   -N    Do not include a markdown notes file
-	-h		Show usage instructions
+  -h	Show usage instructions
   -d    print debug info
 
   example: "cptemplate -l c -n example" creates a folder named example
