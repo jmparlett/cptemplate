@@ -21,7 +21,7 @@ additional ones or adding a new language will require modifying the code.
 2. Run `sudo make install` in repo dir
 
 ## Modding the files
-You can modify any of the templates, just keep in mind the rules for replacement below.
+You can modify any of the templates, just keep in mind the rules for replacement below, and be sure to rebuild after your done changing your templates.
 1. The keyword `$replaceme$` will be replaced with the programName arg `-n` in all files created.
 2. The keyword `$date$` will be replaced with the current date in `YYYY-MM-DD` format in all files created.
 
