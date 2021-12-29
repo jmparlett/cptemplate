@@ -12,7 +12,7 @@ on Mac OS as well. It will not work for windows however.
 
 ## Usage
 - `-l` Language supports C, C++, Python, and Go. You can also provide "none" to create just a folder with notes.
-- `-N` No notes. Note file is provided by default.
+- `-N` Include a notes file (off by default). If "none" is passed as language this flag doesn't do anything.
 - `-n` Program name. The name of the program or project, this is used to name the files and the directory.
 - `-p` Path to location to place template folder. Defaults to current dir.
 - `-h` Prints usage instructions and exits.

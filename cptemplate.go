@@ -82,7 +82,7 @@ func printHelp() {
         Name of program. This is what $replaceme$ will be replaced with in all files.
   -p string
         Path to write template. Defaults to current dir "./"
-  -N    Do not include a markdown notes file
+  -N    Include a markdown notes file
   -h	Show usage instructions
   -d    print debug info
 
@@ -144,7 +144,7 @@ func main() {
 	flag.StringVar(&language, "l", "cpp", "language template to use")
 	flag.StringVar(&path, "p", "./", "path to write template")
 	flag.StringVar(&programName, "n", "", "name of program")
-	flag.BoolVar(&notes, "N", true, "include notes or dont")
+	flag.BoolVar(&notes, "N", false, "include notes or dont")
 	flag.BoolVar(&debug, "d", false, "print debug info")
 
 	flag.Parse()
@@ -203,6 +203,7 @@ func main() {
 		copyTempFile(pySource, (progFolderPath + programName + ".py"))
 	case "none":
 		fmt.Println("Info: \"none\" provided, creating folder with notes only")
+		copyTempFile(notesFile, (progFolderPath + programName + "Notes.md"))
 	default:
 		fmt.Println("Info: language not supported, cleaning up and exiting")
 		cleanAndDie(progFolderPath)
