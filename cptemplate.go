@@ -9,6 +9,7 @@ import (
 	"os"
 	"strings"
 	"time"
+	"unicode"
 )
 
 /*********** Constants ***********/
@@ -91,31 +92,34 @@ func printHelp() {
 	fmt.Print(usageMsg)
 }
 
-func permuteArgs(args []string) int {
-	//rearrange the args array so that named arguments come first, this allows us to use positionals and named args
-	//we return the index of start of non flag args
-	args = args[1:] //remember changing the slice changes the underlying array
-	j := 0          //our swap index
-	i := 0          //our args index
-	for i < len(args) {
-		if args[i][0] == '-' { //if its a dash we want to send it and its neighbor to the back
-			tmp := args[i]
-			args[i] = args[j]
-			args[j] = tmp
-			j++
-			i++
+func permuteArgsArr(args []string) int {
+	args = args[1:] //slice out the prog name
 
-			//now the neighbor
-			if i < len(args) {
-				tmp := args[i]
-				args[i] = args[j]
-				args[j] = tmp
-				j++
+	var namedArgs []string
+	var positionalArgs []string
+	i := 0
+
+	for i < len(args) {
+		if args[i][0] == '-' {
+			if unicode.IsLower(rune(args[i][1])) { //we want to move it and its adjacent neighbor if it has one
+				namedArgs = append(namedArgs, args[i])
+				if i+1 < len(args) {
+					i++
+					namedArgs = append(namedArgs, args[i])
+				}
+			} else { //its a bool switch just add it
+				namedArgs = append(namedArgs, args[i])
 			}
+		} else { //it must be a positional
+			positionalArgs = append(positionalArgs, args[i])
 		}
 		i++
 	}
-	return j + 1 //pos of named arg
+	//copy back
+	for i, v := range append(namedArgs, positionalArgs...) {
+		args[i] = v
+	}
+	return len(namedArgs) + 1
 }
 
 func cleanAndDie(path string) {
@@ -139,7 +143,7 @@ func main() {
 	flag.Usage = printHelp
 
 	//permute args reg to rearrange named args
-	namedArgsPos := permuteArgs(os.Args)
+	namedArgsPos := permuteArgsArr(os.Args)
 
 	flag.StringVar(&language, "l", "cpp", "language template to use")
 	flag.StringVar(&path, "p", "./", "path to write template")
