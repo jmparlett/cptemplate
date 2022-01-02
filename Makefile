@@ -9,4 +9,4 @@ cptemplate: cptemplate.go $(CDIR) $(GODIR) $(PYDIR) $(CPPDIR) templates/*
 
 install:
 	make cptemplate
-	mv cptemplate /usr/bin/cptemplate
+	mv cptemplate /usr/local/bin/cptemplate
