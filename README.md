@@ -11,7 +11,7 @@ additional ones or adding a new language will require modifying the code. Its te
 on Mac OS as well. It will not work for windows however.
 
 ## Usage
-- `-l` Language supports C, C++, Python, and Go. You can also provide "none" to create just a folder with notes.
+- `-l` Language supports C, C++, Python, latex, and Go. You can also provide "none" to create just a folder with notes.
 - `-N` Include a notes file (off by default). If "none" is passed as language this flag doesn't do anything.
 - `-n` Program name. The name of the program or project, this is used to name the files and the directory.
 - `-p` Path to location to place template folder. Defaults to current dir.
@@ -20,7 +20,7 @@ on Mac OS as well. It will not work for windows however.
 ## Installation
 Only dependency is Go. Reference this for installing Go https://go.dev/doc/install
 1. Clone the repo
-2. Run `sudo make install` in repo dir
+2. Run `make install` in repo dir and you should be prompted for a password to mv executeable to `/usr/local/bin`
 
 ## Modding the files
 You can modify any of the templates, just keep in mind the rules for replacement below, and be sure to rerun `sudo make install` after your done changing your templates.
