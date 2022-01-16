@@ -90,12 +90,12 @@ func printHelp() {
         Name of program. This is what $replaceme$ will be replaced with in all files.
   -p string
         Path to write template. Defaults to current dir "./"
-  -N    Include a markdown notes file
+  -N    Include a markdown README file
   -h	Show usage instructions
   -d    print debug info
 
-  example: "cptemplate -l c -n example" creates a folder named example
-  containing example.c, exampleNotes.md, and a Makefile.` + "\r\n"
+  example: "cptemplate -l c -n example -N" creates a folder named example
+  containing example.c, README.md, and a Makefile.` + "\r\n"
 	fmt.Print(usageMsg)
 }
 
@@ -194,7 +194,7 @@ func main() {
 	}
 
 	if notes {
-		copyTempFile(notesFile, (progFolderPath + programName + "Notes.md"))
+		copyTempFile(notesFile, (progFolderPath + "README.md"))
 	}
 
 	//now we make the source files
@@ -217,7 +217,7 @@ func main() {
 		copyTempFile(latexSource, (progFolderPath + programName + ".tex"))
 	case "none":
 		fmt.Println("Info: \"none\" provided, creating folder with notes only")
-		copyTempFile(notesFile, (progFolderPath + programName + "Notes.md"))
+		copyTempFile(notesFile, (progFolderPath + "README.md"))
 	default:
 		fmt.Println("Info: language not supported, cleaning up and exiting")
 		cleanAndDie(progFolderPath)

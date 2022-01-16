@@ -11,8 +11,8 @@ additional ones or adding a new language will require modifying the code. Its te
 on Mac OS as well. It will not work for windows however.
 
 ## Usage
-- `-l` Language supports C, C++, Python, latex, and Go. You can also provide "none" to create just a folder with notes.
-- `-N` Include a notes file (off by default). If "none" is passed as language this flag doesn't do anything.
+- `-l` Language supports C, C++, Python, latex, and Go. You can also provide "none" to create just a folder with a `README.md`.
+- `-N` Include a `README.md` file (off by default). If "none" is passed as language this flag doesn't do anything.
 - `-n` Program name. The name of the program or project, this is used to name the files and the directory.
 - `-p` Path to location to place template folder. Defaults to current dir.
 - `-h` Prints usage instructions and exits.
@@ -29,12 +29,12 @@ You can modify any of the templates, just keep in mind the rules for replacement
 
 
 ## Process Walkthrough
-Given the command `cptemplate -l c -n example`
+Given the command `cptemplate -l c -n example -N`
 ### In current dir
 1. creates a folder called example
 2. creates a source file `example.c`
 3. creates a `Makefile` that compiles and runs `example.c`
-4. creates a notes file `exampleNotes.md`
+4. creates a readme file `README.md`
 
 If "blank" is given for the language arg steps 2,3 will be excluded.
 
