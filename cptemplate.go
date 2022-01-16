@@ -25,7 +25,7 @@ var programStartTime time.Time = time.Now()
 
 /****************** Template Files Begin ******************/
 // Notes Template
-//go:embed templates/README.md
+//go:embed templates/templateREADME.md
 var readMeFile string
 
 // C++ files
