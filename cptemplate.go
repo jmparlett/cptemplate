@@ -25,8 +25,8 @@ var programStartTime time.Time = time.Now()
 
 /****************** Template Files Begin ******************/
 // Notes Template
-//go:embed templates/programNotes.md
-var notesFile string
+//go:embed templates/README.md
+var readMeFile string
 
 // C++ files
 //go:embed templates/cpp/Makefile
@@ -190,11 +190,11 @@ func main() {
 	os.Mkdir(progFolderPath, 0755) //drwxr-xr-x
 
 	if debug {
-		log.Printf("Notes files\n %s", notesFile)
+		log.Printf("Notes files\n %s", readMeFile)
 	}
 
 	if notes {
-		copyTempFile(notesFile, (progFolderPath + "README.md"))
+		copyTempFile(readMeFile, (progFolderPath + "README.md"))
 	}
 
 	//now we make the source files
@@ -217,7 +217,7 @@ func main() {
 		copyTempFile(latexSource, (progFolderPath + programName + ".tex"))
 	case "none":
 		fmt.Println("Info: \"none\" provided, creating folder with notes only")
-		copyTempFile(notesFile, (progFolderPath + "README.md"))
+		copyTempFile(readMeFile, (progFolderPath + "README.md"))
 	default:
 		fmt.Println("Info: language not supported, cleaning up and exiting")
 		cleanAndDie(progFolderPath)
