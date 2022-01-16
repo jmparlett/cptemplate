@@ -1,5 +1,5 @@
 //Author: Jonathan Parlett
-// Program Name: $replaceme$
+// Program Name: $replaceme$.go
 // Created: $date$
 
 package main
