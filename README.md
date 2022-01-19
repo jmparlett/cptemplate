@@ -23,7 +23,7 @@ Only dependency is Go. Reference this for installing Go https://go.dev/doc/insta
 2. Run `make install` in repo dir and you should be prompted for a password to mv executeable to `/usr/local/bin`
 
 ## Modding the files
-You can modify any of the templates, just keep in mind the rules for replacement below, and be sure to rerun `sudo make install` after your done changing your templates.
+You can modify any of the templates, just keep in mind the rules for replacement below, and be sure to rerun `make install` after your done changing your templates.
 1. The keyword `$replaceme$` will be replaced with the programName arg `-n` in all files created.
 2. The keyword `$date$` will be replaced with the current date in `YYYY-MM-DD` format in all files created.
 
