@@ -63,6 +63,13 @@ var latexMakefile string
 //go:embed templates/latex/source.tex
 var latexSource string
 
+// Racket files
+//go:embed templates/racket/source.rkt
+var racketSource string
+
+//go:embed templates/racket/Makefile
+var racketMakefile string
+
 /****************** Template Files End ********************/
 
 func copyTempFile(source string, path string) {
@@ -85,7 +92,8 @@ func copyTempFile(source string, path string) {
 func printHelp() {
 	usageMsg := `Usage: cptemplate [programName] [language] [options]
   -l string, case insensitive, defaults to C++
-        Language template to use, supports Go, Python, latex, C, and C++, (for C++ provide "cpp" as the arg)
+        Language template to use, supports Go, Python, Racket, Latex, C, and C++ 
+				for C++ provide "cpp" as the arg, otherwise provide the desired language in lowercase
   -n string
         Name of program. This is what $replaceme$ will be replaced with in all files.
   -p string
@@ -215,6 +223,9 @@ func main() {
 	case "latex":
 		copyTempFile(latexMakefile, (progFolderPath + "Makefile"))
 		copyTempFile(latexSource, (progFolderPath + programName + ".tex"))
+	case "racket":
+		copyTempFile(racketMakefile, (progFolderPath + "Makefile"))
+		copyTempFile(racketSource, (progFolderPath + programName + ".rkt"))
 	case "none":
 		fmt.Println("Info: \"none\" provided, creating folder with notes only")
 		copyTempFile(readMeFile, (progFolderPath + "README.md"))

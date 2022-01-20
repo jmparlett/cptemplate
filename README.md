@@ -11,7 +11,7 @@ additional ones or adding a new language will require modifying the code. Its te
 on Mac OS as well. It will not work for windows however.
 
 ## Usage
-- `-l` Language supports C, C++, Python, latex, and Go. You can also provide "none" to create just a folder with a `README.md`.
+- `-l` Language supports C, C++, Python, Latex, Racket, and Go. You can also provide "none" to create just a folder with a `README.md`.
 - `-N` Include a `README.md` file (off by default). If "none" is passed as language this flag doesn't do anything.
 - `-n` Program name. The name of the program or project, this is used to name the files and the directory.
 - `-p` Path to location to place template folder. Defaults to current dir.
