@@ -1,4 +1,4 @@
-//Author: Jonathan Parlett
+// Author: Jonathan Parlett
 // Program Name: $replaceme$.go
 // Created: $date$
 
