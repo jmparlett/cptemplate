@@ -1,6 +1,6 @@
-//Author: Jonathan Parlett
-//Program Name: $replaceme$.cpp
-//Created: $date$
+// Author: Jonathan Parlett
+// Program Name: $replaceme$.cpp
+// Created: $date$
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long int
