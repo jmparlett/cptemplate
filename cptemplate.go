@@ -24,52 +24,74 @@ var date string
 var programStartTime time.Time = time.Now()
 
 /****************** Template Files Begin ******************/
-// Notes Template
+// Notes Template----------------------
 //go:embed templates/templateREADME.md
 var readMeFile string
 
-// C++ files
+//------------------------------------
+
+// C++ files--------------------------
 //go:embed templates/cpp/Makefile
 var cppMakefile string
 
 //go:embed templates/cpp/source.cpp
 var cppSource string
 
-// C files
+//------------------------------------
+
+// C files----------------------------
 //go:embed templates/c/Makefile
 var cMakefile string
 
 //go:embed templates/c/source.c
 var cSource string
 
-// Go files
+//------------------------------------
+
+// Go files---------------------------
 //go:embed templates/go/Makefile
 var goMakefile string
 
 //go:embed templates/go/source.go
 var goSource string
 
-// Python files
+//------------------------------------
+
+// Python files-----------------------
 //go:embed templates/python/Makefile
 var pyMakefile string
 
 //go:embed templates/python/source.py
 var pySource string
 
-// Latex files
+//------------------------------------
+
+// Latex files------------------------
 //go:embed templates/latex/Makefile
 var latexMakefile string
 
 //go:embed templates/latex/source.tex
 var latexSource string
 
-// Racket files
+//------------------------------------
+
+// Racket files-----------------------
 //go:embed templates/racket/source.rkt
 var racketSource string
 
 //go:embed templates/racket/Makefile
 var racketMakefile string
 
+//------------------------------------
+
+// Haskell files----------------------
+//go:embed templates/haskell/source.hs
+var haskellSource string
+
+//go:embed templates/haskell/Makefile
+var haskellMakefile string
+
+//------------------------------------
 /****************** Template Files End ********************/
 
 func copyTempFile(source string, path string) {
@@ -92,7 +114,7 @@ func copyTempFile(source string, path string) {
 func printHelp() {
 	usageMsg := `Usage: cptemplate [programName] [language] [options]
   -l string, case insensitive, defaults to C++
-        Language template to use, supports Go, Python, Racket, Latex, C, and C++ 
+        Language template to use, supports Go, Python, Racket, Latex, haskell, C, and C++ 
 				for C++ provide "cpp" as the arg, otherwise provide the desired language in lowercase
   -n string
         Name of program. This is what $replaceme$ will be replaced with in all files.
@@ -226,6 +248,9 @@ func main() {
 	case "racket":
 		copyTempFile(racketMakefile, (progFolderPath + "Makefile"))
 		copyTempFile(racketSource, (progFolderPath + programName + ".rkt"))
+	case "haskell":
+		copyTempFile(haskellMakefile, (progFolderPath + "Makefile"))
+		copyTempFile(haskellSource, (progFolderPath + programName + ".hs"))
 	case "none":
 		fmt.Println("Info: \"none\" provided, creating folder with notes only")
 		copyTempFile(readMeFile, (progFolderPath + "README.md"))
