@@ -1,4 +1,4 @@
-//Author: Jonathan Parlett
+// Author: Jonathan Parlett
 // Program Name: $replaceme$.c
 // Created: $date$
 #include <stdio.h>
