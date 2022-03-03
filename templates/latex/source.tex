@@ -1,7 +1,6 @@
 \documentclass[14pt]{extreport}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-\usepackage{geometry} % see geometry.pdf on how to lay out the page. There's lots.
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{fancyhdr}
@@ -9,8 +8,18 @@
 \usepackage{setspace}
 \usepackage{listings}
 \pgfplotsset{compat=1.17} 
-\geometry{a4paper} % or letter or a5paper or ... etc
+% \geometry{a4paper} % or letter or a5paper or ... etc
 % \geometry{landscape} % rotated page geometry
+\usepackage[margin=2cm]{geometry}
+\usepackage[most]{tcolorbox}
+\newtcolorbox{tb}[1][]{%
+  sharp corners,
+  enhanced,
+  colback=white,
+  height=6cm,
+  attach title to upper,
+  #1
+}
 
 %These setting will make the code areas look Pretty
 \lstset{
