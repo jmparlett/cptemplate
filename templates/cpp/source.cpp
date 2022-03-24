@@ -8,6 +8,8 @@ using namespace std;
 #define li long int
 #define ui unsigned int
 using vi = vector<int>;
+using vull = vector<ull>;
+using vll = vector<ll>;
 #define pb push_back
 #define rsz resize
 #define all(x) begin(x), end(x)
