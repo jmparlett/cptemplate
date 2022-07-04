@@ -75,6 +75,15 @@ var latexSource string
 
 //------------------------------------
 
+// beamer files------------------------
+//go:embed templates/beamer/Makefile
+var beamerMakefile string
+
+//go:embed templates/beamer/source.tex
+var beamerSource string
+
+//------------------------------------
+
 // Racket files-----------------------
 //go:embed templates/racket/source.rkt
 var racketSource string
@@ -245,6 +254,9 @@ func main() {
 	case "latex":
 		copyTempFile(latexMakefile, (progFolderPath + "Makefile"))
 		copyTempFile(latexSource, (progFolderPath + programName + ".tex"))
+	case "beamer":
+		copyTempFile(beamerMakefile, (progFolderPath + "Makefile"))
+		copyTempFile(beamerSource, (progFolderPath + programName + ".tex"))
 	case "racket":
 		copyTempFile(racketMakefile, (progFolderPath + "Makefile"))
 		copyTempFile(racketSource, (progFolderPath + programName + ".rkt"))

@@ -1,0 +1,62 @@
+
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{setspace}
+\usepackage{listings}
+\pgfplotsset{compat=1.17} 
+\usepackage{enumerate}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+% \geometry{a4paper} % or letter or a5paper or ... etc
+% \geometry{landscape} % rotated page geometry
+% \usepackage[margin=2cm]{geometry}
+\usepackage{minted}
+\usepackage[most]{tcolorbox}
+\newtcolorbox{tb}[1][]{%
+  sharp corners,
+  enhanced,
+  colback=white,
+  height=6cm,
+  attach title to upper,
+  #1
+}
+
+%These setting will make the code areas look Pretty
+\lstset{
+	escapechar=~,
+	numbers=left, 
+	%numberstyle=\tiny, 
+	stepnumber=1, 
+	firstnumber=1,
+	%numbersep=5pt,
+	language=C,
+	% stringstyle=\itfamily,
+	%basicstyle=\footnotesize, 
+	showstringspaces=false,
+	frame=single,
+  upquote=true
+}
+
+% created $date$ %
+% Theme choice:
+% \usetheme{AnnArbor}
+\usetheme{focus}
+% Title page details: 
+\title{$replaceme$}
+\author{Jonathan Parlett}
+\date{\today}
+
+\begin{document}
+
+% Title page frame
+\begin{frame}
+    \titlepage
+	{\bf $replaceme$}
+\end{frame}
+
+\end{document}
